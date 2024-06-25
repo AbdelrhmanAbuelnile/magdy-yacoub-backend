@@ -11,9 +11,13 @@ const Schema = mongoose.Schema;
 
 // Define log schema
 const diagnoseSchema = new Schema({
-    userId:{
+    patientId:{
         type: Schema.Types.ObjectId,
         ref: 'User',
+    },
+    doctorId:{
+        type: Schema.Types.ObjectId,
+        ref: 'Doctor',
     },
     diagnose: {
         type: String,
