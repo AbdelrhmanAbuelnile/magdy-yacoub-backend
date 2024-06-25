@@ -86,7 +86,7 @@ exports.login = (req, res, next) => {
                 { expiresIn: '1y' }
             );
             console.log("successful");
-            res.status(200).json({ token, name: loadedUser.name, userId: loadedUser._id.toString() });
+            res.status(200).json({ token, name: loadedUser.name, userId: loadedUser._id.toString(),role: loadedUser.role });
         })
         .catch(err => {
             if (!err.statusCode) {
