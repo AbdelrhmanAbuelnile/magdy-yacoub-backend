@@ -63,7 +63,7 @@ exports.login = (req, res, next) => {
         .then(user => {
             if (!user) {
                 const error = new Error('A user with this email could not be found.');
-                res.statusCode = 404; //User not found
+                res.status(404).json({ message: 'A user with this email could not be found.' });
                 throw error;
             }
             loadedUser = user;
@@ -73,7 +73,7 @@ exports.login = (req, res, next) => {
             if (!isEqual) {
                 console.log("not successful");
                 const error = new Error('Wrong password');
-                res.statusCode = 401;
+                res.status(401).json({ message: 'Wrong password or email' });
                 throw error;
             }
             const token = jwt.sign({
