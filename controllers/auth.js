@@ -39,10 +39,11 @@ exports.signup = async (req, res, next) => {
                 email: savedUser.email,
             });
             await newDoctor.save();
+        }else{
+            const diagnose = new Diagnose({ userId: savedUser._id });
+            await diagnose.save();
         }
 
-        const diagnose = new Diagnose({ userId: savedUser._id });
-        await diagnose.save();
 
         res.status(201).json({ message: 'User created.', userId: savedUser._id, role: savedUser.role });
     } catch (err) {

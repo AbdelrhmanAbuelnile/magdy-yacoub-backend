@@ -1,31 +1,24 @@
-/**
-
-diagnose.js
-This file defines the diagnose model for the API application using Mongoose.
-*/
-
-// Import required modules
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// Define log schema
 const diagnoseSchema = new Schema({
-    patientId:{
+    patientId: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Patient',
     },
-    doctorId:{
+    doctorId: {
         type: Schema.Types.ObjectId,
         ref: 'Doctor',
     },
-    diagnose: {
+    diagnosis: {
         type: String,
         default: 'Not diagnosed yet',
-    }
+    },
+    preseciption: {
+        type: String,
+        default: 'No prescription yet',
+    },
+}, { timestamps: true });
 
-},{ timestamps: true });
-
-
-// Export the log model
 module.exports = mongoose.model('Diagnose', diagnoseSchema);
