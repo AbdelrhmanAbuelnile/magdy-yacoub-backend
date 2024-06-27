@@ -69,17 +69,16 @@ exports.getAuthDiagnose = (req, res, next) => {
     });
 };
 exports.getAllDiagnose = (req, res, next) => {
-    
     Diagnose.find()
-    .then(diagnose => {
-        if(!diagnose){
-            const error = new Error('Could not find diagnose.');
+    .then(diagnoses => {
+        if(diagnoses.length === 0){
+            const error = new Error('No diagnoses found.');
             error.statusCode = 404;
             throw error;
         }
-        res.status(200).json({message: 'diagnose fetched.', diagnose});
+        res.status(200).json({message: 'Diagnoses fetched.', diagnoses});
     })
-    .catch(err=>{
+    .catch(err => {
         if (!err.statusCode) {
             err.statusCode = 500;
         }

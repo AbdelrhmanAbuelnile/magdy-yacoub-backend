@@ -10,6 +10,7 @@ const diagnoseSchema = new Schema({
     doctorId: {
         type: Schema.Types.ObjectId,
         ref: 'Doctor',
+        default: null,
     },
     diagnosis: {
         type: String,
